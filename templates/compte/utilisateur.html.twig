@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+<link href="{{ asset('assets/css/nav.css') }}" rel="stylesheet">
+{% endblock %}
+{% block title %}{{utilisateur.pseudo}} {% endblock %}
+{% block body %}
+    <nav>
+        <div class="nav_i"><a href="{{path('app_accueil')  }}"><i class="fa-solid fa-arrow-left fa-xl"></i></a></div>
+        <div id="test"><img id="logo_img" src="{{ asset('assets/img/logo_black.svg') }}" /><a href="{{ path('app_accueil') }}" id="logo">SpeakMusic</a></div>
+    </nav>
+
+    <div class="info_user">
+        <div>
+            {% if utilisateur.imageProfil != [] %}
+                <img id='profil' src="{{ asset('assets/imageProfil/'~ utilisateur.imageProfil) }}" alt="">
+             {% else %} 
+                <img id='profil' src="{{ asset('assets/imageProfil/default.png') }}" alt="">
+            {% endif %}
+        </div>
+        <div>
+            <h2>{{utilisateur.pseudo}}</h2>
+            <h3>12 publications</h3>
+        </div>
+    </div>
+
+<hr>
+{% for interpretations in interpretations %}
+<h2>{{interpretations.titre}}</h2>
+<p>{{interpretations.description}}</p>
+{% endfor %}
+
+{% dump utilisateur %}
+{% dump interpretations %}
+<style>
+    nav 
+    {
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        color: grey;
+        margin-left: 4%;
+        margin-top: 3%;
+        margin-bottom : 5%;
+    }
+    i 
+    {
+        color:white;
+    }
+    .nav_i 
+    {
+        width:40px;
+        height: 40px;
+        background-color:rgb(65, 65, 65);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+    }
+    #logo_img 
+    {
+        width: 10%;
+        margin-right: 10px;
+    }
+    #logo 
+    {
+        font-size: 1.2em;
+        color: black;
+        font-weight: bold;
+    }
+    .red
+    {
+        color:  #EE6659
+    }
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus 
+    {
+    outline: none;
+    }
+    a 
+    {
+        text-decoration: none;
+        color : grey;
+    }
+
+    #profil
+    {
+        width: 6vw;
+        height: 6vw;
+        border-radius: 50%;
+    }
+    .info_user 
+    {
+        background-color: #282828;
+        width: 30vw;
+        min-height: 10vw;
+        margin: auto;
+        border-radius: 18px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        color: white;
+    }
+</style>
+
+{% endblock %}

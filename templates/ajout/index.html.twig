@@ -1,0 +1,148 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AjoutController!{% endblock %}
+
+{% block body %}
+<nav>
+    <div class="nav_i"><a href="{{path('app_accueil')  }}"><i class="fa-solid fa-arrow-left fa-xl"></i></a></div>
+    <div id="test"><img id="logo_img" src="{{ asset('assets/img/logo.svg') }}" /><a href="{{ path('app_accueil') }}" id="logo">SpeakMusic</a></div>
+</nav>
+<h1>Que voulez vous ajouter à SpeakMusic ?</h1>
+
+
+
+    {{ form(form) }}
+
+
+
+<style>
+body
+    {
+        margin:0;
+        padding:0;
+        font-family: sans-serif;
+        text-align:center;
+    }
+    nav 
+    {
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        color: grey;
+        margin-left: 4%;
+        margin-top: 3%;
+    }
+    i 
+    {
+        color:white;
+    }
+    .nav_i 
+    {
+        width:40px;
+        height: 40px;
+        background-color:rgb(65, 65, 65);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+    }
+    #logo_img 
+    {
+        width: 10%;
+        margin-right: 10px;
+    }
+    #logo 
+    {
+        font-size: 1.2em;
+        color: black;
+        font-weight: bold;
+    }
+    .red
+    {
+        color:  #EE6659
+    }
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus 
+    {
+    outline: none;
+    }
+    a 
+    {
+        text-decoration: none;
+        color : grey;
+    }
+
+
+
+
+    * {
+        box-sizing: border-box;
+        font-family: sans-serif;
+      }
+      
+
+      input[type=radio] {
+        display: none;
+      }
+      input[type=radio]:checked + label span {
+        transform: scale(1.1);
+        border: 10px solid #EE6659;
+      }
+      
+      
+      form 
+      {
+          display: flex;
+          flex-direction: column;
+      }
+      
+      form>div>div 
+      {
+        min-width: 20vw;
+      }
+      h1 
+      {
+          text-align :center;
+          margin-top: 20vh;
+          margin-left: 10%;
+          margin-right: 10%;
+      }
+      
+      form div 
+      {
+          margin: auto;
+      }
+      
+
+      select 
+      {
+        height: 6vh;
+        max-height: 60px;
+        width: 10vw;
+        margin-left:10%;
+        margin-bottom: 5vh;
+        border: 2px solid black;
+        border-radius: 10px;
+        padding-left: 5%;
+      }
+
+      button
+    {
+        min-width: 100px;
+        width: 14vw;
+        display: flex;
+        color: white;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding:  10px;
+        border: none;
+        background-color: black;
+        border-radius: 7px;
+        align-items: middle;
+        margin:auto;
+    }
+</style>
+{% endblock %}

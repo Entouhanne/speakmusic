@@ -1,0 +1,265 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ResultatsController!{% endblock %}
+{% block header_accueil %}
+{% endblock %}
+
+{% block body %}
+<h1>Résultats pour <span class="red">{{ nom}}</span></h1>
+
+      {{ form_start(form) }}
+      {{ form_widget(form.nom, { 'attr': {'placeholder': 'Recherchez une musique...'} }) }}
+      <button type="submit" value="Submit" id="submitButton">
+        <i id='submit_i' class="fa-solid fa-magnifying-glass"></i>
+          </button>
+
+      {{ form_end(form) }}
+
+{% for musique in musique %}
+{% dump musique %}
+<div class="section" style="
+background-image: linear-gradient(-30deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.7)),
+url('{{ asset('assets/illustrations/'~ musique.Illustration) }}'); ">
+    <h2>{{musique.nom}}</h2>
+    {% if musique.1 == 'musique' %}
+    <p>Par {{musique.auteur}}</p>
+    {% endif %}
+    <div id='stats'>
+        {% if musique.1 == 'musique' %}
+            <p><span class="big">{% if musique.1 == 'musique' %}{{musique.nb_interpretation}} {% endif %}</span> Interprétations</p>
+            <p><span class="big">Nombre</span> En musique</p>
+        {% elseif musique.1 == 'auteur' %} 
+            <h4>{{musique.type}} {{musique.pays}} à tendance {{musique.genre}} ayant débuté en {{musique.dateFormation}} </h4>
+        {% endif %}
+    </div>
+    <div class="check">
+        <div class="etoiles">
+            <i class="fa-solid fa-star red"></i>
+            <i class="fa-solid fa-star red"></i>
+            <i class="fa-solid fa-star red"></i>
+            <i class="fa-solid fa-star red"></i>
+            <i class="fa-solid fa-star"></i>
+        </div>
+        
+        {% if musique.1 == 'musique' %}
+            <a href="{{ path('app_musique', {id: musique.id}) }}">
+        {% endif %}
+
+        {% if musique.1 == 'auteur' %}
+            <a href="{{ path('app_auteur', {id: musique.id}) }}">
+        {% endif %}
+
+        <div class="go">
+            <i class="fa-solid fa-arrow-right fa-xl "></i>
+        </div>
+        </a>
+    </div>
+  </div>
+{% endfor %}
+
+
+<div id="conteneur_pagination">
+    {{ knp_pagination_render(musique) }}
+</div>
+
+
+<script>
+    var x = document.querySelectorAll("span.last a");
+    x = x[x.length-1];
+    console.log(x);
+    x.innerHTML = 'Fin';
+
+    var x = document.querySelectorAll("span.first a");
+    x = x[x.length-1];
+    console.log(x);
+    x.innerHTML = 'Debut';
+</script>
+<style>
+    body
+    {
+        margin:0;
+        padding:0;
+        width: 100vw;
+        height: 100vh;
+        font-family: sans-serif;
+        text-align:center;
+    }
+    nav 
+    {
+        display:flex;
+        justify-content: space-around;
+        align-items: flex-end;
+        height: 7vh;
+        padding-bottom: 4vh;
+        color: grey;
+
+    }
+    #logo_img 
+    {
+        width: 10%;
+        margin-right: 10px;
+    }
+    #logo 
+    {
+        font-size: 1.2em;
+        color: black;
+        font-weight: bold;
+    }
+    .red
+    {
+        color:  #EE6659
+    }
+    input
+    {
+        margin-left: 10px;
+        width: 25vw;
+        border: none;
+    }
+    form
+    {
+        margin-top: 10%;
+        width: 30vw;
+        display: flex;
+        height: 40px;
+        border-radius: 10px;
+        border: 3px solid black;
+        margin:auto;
+        margin-bottom: 5%;
+
+    }
+    button
+    {
+        height: 41px;
+        width: 5vw;
+        border: none;
+        background-color: black;
+        border-radius: 7px;
+        align-items: middle;
+    }
+    #submit_i, .go i
+    {
+        color: white;
+    }
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus 
+    {
+    outline: none;
+    }
+    #stats
+    {
+        display:flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .section
+    {
+        margin-top: 5%;
+        width: 50%;
+        padding:2%;
+        background-color: #808080;
+        text-align: left;
+        margin:auto;
+        border-radius: 20px;
+    
+
+        background-size: cover;
+        margin-bottom: 5%;
+        box-shadow: 2px 2px 20px rgb(180, 169, 169);
+        transition : transform 300ms;
+    }
+    .section:hover {
+        transform: scale(1.05);
+    }
+
+    .big
+    {
+        font-size: 2em;
+    }
+    p 
+    {
+        margin:5px;
+    }
+    .check
+    {
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .go 
+    {
+        background:black;
+        border-radius:50%;
+        width: 50px;
+        height:50px;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 2px 3px 20px white;
+    }
+    .go i 
+    {
+        margin: auto;
+    }
+    a 
+    {
+        text-decoration: none;
+        color : grey;
+    }
+
+    .pagination 
+    {
+        display: flex;
+        flex-direction: row;
+        width: 40vw;
+        justify-content: center;
+    }
+
+    .page, .current
+    {
+        width: 2vw;
+        height: 3vw;
+        border: 2px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        margin-right: 2%;
+    }
+
+    .last, .first
+    {
+        min-width: 8vw;
+        height: 3vw;
+        border: 2px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        margin-right: 2%;
+    }
+
+    .next, .previous
+    {
+        width: 3vw;
+        height: 3vw;
+        border: 2px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        margin-right: 2%;
+    }
+    #conteneur_pagination
+    {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 3%;
+    }
+</style>
+
+{% endblock %}

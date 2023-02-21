@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index{% endblock %}
+{% block header_accueil %}
+{% endblock %}
+{% block stylesheets %}
+<link href="{{ asset('assets/css/index.css') }}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+
+
+    <div id="main_content">
+    
+    <div>
+        <h1>Un lieu pour parler <br> <span id="red">d'interprétation musicale</span>.</h1>
+        <p>Trouvez enfin la signification de vos paroles préférées</p>
+        {{ form_start(form) }}
+        {{ form_widget(form.nom, { 'attr': {'placeholder': 'Recherchez une musique...'} }) }}
+        <button type="submit" value="Submit" id="submitButton">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        {{ form_end(form) }}
+
+    </div>
+    <img id="bauhaus" src="{{ asset('assets/img/bauhaus_illustration.svg') }}" />
+    </div>
+    <footer>
+        <p>Tout droit réservé</p> 
+        <p>SpeakMusic, 2022-2023</p>
+        <p>Par Entwanne</p> 
+    </footer>
+
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello InscriptionController!{% endblock %}
+
+{% block body %}
+<div class="flex">
+    <div id="one">
+        <h1>Ravi de vous voir sur SpeakMusic !</h1>
+        <p>Rejoingez une communauté de passionnés</p>
+
+        {{ form_start(form) }}
+        <p>
+            <label for="pseudo">Votre pseudo :</label> <br />
+            {{ form_widget(form.pseudo, { 'attr': {'placeholder': 'Votre pseudo...', 'class' : 'normal_input'} }) }}
+
+            <br />
+            <label for="email">Votre email :</label> <br />
+            {{ form_widget(form.email, { 'attr': {'placeholder': 'example@gmail.com', 'class' : 'normal_input'} }) }}
+            
+            <br />
+            <label for="pass">Votre mot de passe :</label> <br />
+            {{ form_widget(form.password, { 'attr': {'placeholder': 'P4ssW0rd.', 'class' : 'normal_input'} }) }}
+        </p>
+        {{ form_widget(form.submit, { 'attr': {'class': 'send', 'type' : 'submit', 'value' : "Publier"} }) }}
+
+    </div>
+    <div id="two">
+        <img src="{{ asset('assets/img/logo_black.svg') }}" />
+        <h1>SpeakMusic</h1>
+    </div>
+</div>
+    {{ form(form) }}
+    <style>
+        body
+        {
+            margin:0;
+            padding:0;
+            font-family: sans-serif;
+        }
+        .flex
+        {
+            display:flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100vh;
+            width:100vw;
+            margin:0;
+            padding:0;
+        }
+        #one
+        {
+            width:50vw;
+            margin-left: 3%;
+            margin-right: 3%;
+            
+        }
+        #two
+        {
+            height: 100%;
+            display:flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            background-color: #EE6659;
+            width: 50vw;
+            text-align:center
+        }
+        img
+        {
+            width: 20%;
+        }
+        label
+        {
+            margin-bottom:3%;
+            margin-top: 3%;
+            display:inline-block;
+        }
+        .normal_input
+        {
+            border-radius: 15px;
+            width: 60%;
+            height: 6vh;
+            border: 2px solid black;
+            padding-left: 10px;
+        }
+        p 
+        {
+            color:grey;
+        }
+        .send
+        {
+            border-radius:15px;
+            background-color: black;
+            color:white;
+            border: none;
+            text-align: center;
+            height: 7vh;
+            width: 60%;
+            margin-top: 3%;
+        }
+        input:focus,
+        select:focus,
+        textarea:focus,
+        button:focus 
+        {
+        outline: none;
+        }
+        @media screen and (max-width: 650px)
+        {
+            #two
+            {
+                display:none;
+            }
+            .normal_input
+            {
+                border-radius: 15px;
+                width: 90%;
+            }
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,188 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CompteController!{% endblock %}
+{% block stylesheets %}
+<link href="{{ asset('assets/css/nav.css') }}" rel="stylesheet">
+{% endblock %}
+{% block header_accueil %}{% endblock %}
+
+{% block body %}
+{% dump test %}
+{% dump user %}
+<div class='main'>
+    <div class='one'>
+    <h2>Bonjour <strong class="red">{{user.pseudo}}</strong></h2>
+    <p>Cliquez sur votre photo de profil pour la modifier</p>
+    <div class="oblige">
+        {% if user.imageProfil != [] %}
+            <a id="a_photo" href="{{ path('app_changerphoto')}}"><span id='fond'><img id="profil" src="{{ asset('assets/imageProfil/'~ user.imageProfil) }} " /></span></a>
+        {% else %} 
+        <a id="a_photo" href="{{ path('app_changerphoto')}}"><span id='fond'><img id="profil" src="{{ asset('assets/imageProfil/default.png') }} " /></span></a>
+       {% endif %} 
+    </div>
+
+    <label for="search">Votre pseudo :</label> <br />
+
+    <div id="changer_pseudo">
+        {{ form_start(form_pseudo) }}
+        {{ form_row(form_pseudo.pseudo,  { 'placeholder': "test", 'id' : 'search', 'name' : 'search' }) }}
+        {{ form_row(form_pseudo.submit, { 'id': 'submitButton', 'type' : 'submit' }) }}
+        {{ form_end(form_pseudo) }}
+    </div>
+
+        
+
+    <p id="changepwd"><a href="{{ path('app_editer_mot_passe') }}">Changer votre mot de passe</a></p>
+
+
+    </div>
+
+    <div class='two'>
+        <h2>Les fils que vous suivez</h2>
+        {% for test in test %}
+            <p><a href="{{ path('app_supprimer_suivis', {id: test.idSuivis})}}"><i id='poubelle' class="fa-solid fa-trash"></a></i> <a href="{{ path('app_musique', {id : test.id} )}}">{{test.nom}}</a></p>
+        {% endfor %}
+    </div>
+    
+</div>
+
+<style>
+    body
+{
+    margin:0;
+    padding:0;
+    font-family: sans-serif;
+    text-align:center;
+}
+nav 
+{
+    margin-bottom: 5%;
+
+}
+#a_photo 
+{
+    margin:0;
+    padding:0;
+}
+#a_photo:hover
+{
+    opacity: 0.6;
+}
+.red 
+{
+    color:#EE6659;
+}
+#profil
+{
+    width:10vw;
+    height: 10vw;
+    border-radius: 50%;
+}
+p {
+    margin-bottom: 5%;
+}
+#fond 
+{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EE6659;
+    width: 12vw;
+    height:12vw;
+    border-radius: 50%;
+}
+
+#changer_pseudo form
+{
+    margin-top: 5%;
+    width: 27vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+input
+{
+    width: 20vw;
+    border: none;
+    display: flex;
+    height: 35px;
+    outline: none;
+    margin-left: 2%;
+}
+button
+{
+    height: 50px;
+    width: 6vw;
+    border: none;
+    background-color: black;
+    border-radius: 7px;
+    align-items: middle;
+    color: white;
+}
+i 
+{
+    color: white;
+}
+#poubelle
+{
+    color: grey;
+}
+#one 
+{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#poubelle:hover
+{
+    color:#EE6659;
+}
+.main 
+{
+    display:flex;
+    justify-content: space-around;
+}
+.oblige 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+label 
+{
+    margin-top: 5%;
+    display: inline-block;
+}
+#changepwd
+{
+    border-radius:15px;
+    background-color: black;
+    color:white;
+    border: none;
+    text-align: center;
+    height: 7vh;
+    width: 60%;
+    margin-top: 8%;
+    display:flex;
+    padding: 2%;
+    align-items: center;
+    justify-content: center;
+}
+#changepwd a {
+    color: white;
+}
+h1, h2{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.two p 
+{
+    text-align: left;
+}
+</style>
+
+{% endblock %}

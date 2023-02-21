@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+
+<div class="flex">
+    <div id="one">
+        <h1>Vous nous aviez manqué !</h1>
+        <p>Veuillez remplir ces informations pour vous connecter.</p>
+        
+        <form method="post">
+            <p>
+                <label for="inputEmail">Email</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" 
+    class="form-control normal_input" autocomplete="email" placeholder="entwanne@gmail.com" required autofocus>
+                
+                <br />
+                <label for="inputPassword">Password</label>
+                <input type="password" name="password" id="inputPassword" class="form-control normal_input" autocomplete="current-password" required>
+                
+            </p>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <input id="send" type="submit" value="S'inscrire" />
+         </form>
+
+    </div>
+    <div id="two">
+        <img src="{{ asset('assets/img/logo_black.svg') }}" />
+        <h1>SpeakMusic</h1>
+    </div>
+</div>
+
+<style>
+    body
+    {
+        margin:0;
+        padding:0;
+        font-family: sans-serif;
+    }
+    .flex
+    {
+        display:flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 100vh;
+        width:100vw;
+        margin:0;
+        padding:0;
+    }
+    #one
+    {
+        width:50vw;
+        margin-left: 3%;
+        margin-right: 3%;
+        
+    }
+    #two
+    {
+        height: 100%;
+        display:flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        background-color: #EE6659;
+        width: 50vw;
+        text-align:center
+    }
+    img
+    {
+        width: 20%;
+    }
+    label
+    {
+        margin-bottom:3%;
+        margin-top: 3%;
+        display:inline-block;
+    }
+    .normal_input
+    {
+        border-radius: 15px;
+        width: 60%;
+        height: 6vh;
+        border: 2px solid black;
+        padding-left: 10px;
+    }
+    p 
+    {
+        color:grey;
+    }
+    #send
+    {
+        border-radius:15px;
+        background-color: black;
+        color:white;
+        border: none;
+        text-align: center;
+        height: 7vh;
+        width: 60%;
+        margin-top: 3%;
+    }
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus 
+    {
+    outline: none;
+    }
+    #error 
+    {
+        color: red;
+        font-size: 1.2em;
+    }
+    @media screen and (max-width: 650px)
+    {
+        #two
+        {
+            display:none;
+        }
+        .normal_input
+        {
+            border-radius: 15px;
+            width: 90%;
+        }
+    }
+</style>
+
+{% endblock %}

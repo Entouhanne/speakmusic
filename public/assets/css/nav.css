@@ -1,0 +1,51 @@
+*
+{
+    font-family : sans-serif;
+}
+#red
+{
+    color: #EE6659;
+}
+p 
+{
+    margin: 0;
+    padding:0;
+    color: grey
+}
+h1
+{
+    margin-bottom: 10px;
+    font-size: 3em;
+}
+nav 
+{
+    display:flex;
+    justify-content: space-around;
+    align-items: end;
+    margin-top: 3%;
+}
+a 
+{
+    text-decoration: none;
+    color: grey
+}
+#logo 
+{
+    font-size: 1.2em;
+    color: black;
+    font-weight: bold;
+}
+#logo_img
+{
+    width: 30px;
+    padding:0;
+    margin-right: 5px;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus 
+{
+outline: none;
+}

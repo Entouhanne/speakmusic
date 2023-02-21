@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block title %}Succès ! {% endblock %}
+{% block body %}
+
+<section>
+    <div><img id="logo_img" src="{{ asset('assets/img/logo.svg') }}" /><a href="{{ path('app_accueil') }}" id="logo">SpeakMusic</a></div>
+    <h1>Votre mot de passe à bien été modifié !</h1>
+    <p id="changepwd"><a href="{{ path('app_accueil') }}">Aller à l'accueil</a></p>
+</section>
+
+<style>
+    *
+    {
+        font-family : sans-serif;
+    }
+    section 
+    {
+        margin-top: 20%;
+        margin-left: 30%;
+    }
+    a 
+    {
+        text-decoration: none;
+        color: grey
+    }
+    #logo 
+    {
+        font-size: 1.2em;
+        color: black;
+        font-weight: bold;
+    }
+    #logo_img
+    {
+        width: 30px;
+        padding:0;
+        margin-right: 5px;
+    }
+    #changepwd
+    {
+        border-radius:15px;
+        color:black;
+        border: 2px solid black;
+        text-align: center;
+        min-width: 10vw;
+        max-width: 20vw;
+        display:flex;
+        padding: 1%;
+        align-items: center;
+        justify-content: center;
+    }
+    #changepwd a {
+        color: black;
+    }
+</style>
+
+{% endblock %}

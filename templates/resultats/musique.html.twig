@@ -1,0 +1,166 @@
+{% extends 'base.html.twig' %}
+{% block header_accueil %}{% endblock %}
+{% block stylesheets %}
+<link href="{{ asset('assets/css/index.css') }}" rel="stylesheet">
+{% endblock %}
+{% dump musique %}
+{% dump auteur %}
+{% dump interpretation %}
+{% block body %}
+<div class='head'>
+    <div>
+        <h1>{{musique.nom}}</h1>
+        <p><a href="{{ path('app_auteur', {id: auteur.id}) }}">{{auteur.nom}}</a></p>
+        <div class="etoiles">
+                    <i class="fa-solid fa-star red"></i>
+                    <i class="fa-solid fa-star red"></i>
+                    <i class="fa-solid fa-star red"></i>
+                    <i class="fa-solid fa-star red"></i>
+                    <i class="fa-solid fa-star"></i>
+        </div>
+    </div>
+    <div class="stats">
+        <p><span class="big">17</span> Interprétations</p>
+        <p>#<span class="big">7</span> Rang en musique</p>
+    </div>
+    <div class="paroles">
+        <p>{{musique.paroles}}</p>
+    </div>
+
+    <div id='boutons'>
+        <a class='button' href="{{ path('app_suivre', {id: musique.id}) }}">Suivre</a>
+        <a class='button' href="{{ path('app_publier', {id: musique.id}) }}">Publier</a>
+    </div>
+</div>
+
+{% if musique.lien is not null %} 
+<p style = "text-align :center"><a href="{{musique.lien}}" target="_blank">Ecouter la musique sur Youtube</a></p>
+{% endif %} 
+
+{% for item in interpretation %}
+    <div class="section">
+        <h2>{{item.titre}}</h2>
+        <div class="section_info">
+            {% if item.ImageProfil != null %}
+            <img class='profil' src="{{ asset('assets/imageProfil/'~ item.ImageProfil) }}" alt="">
+            {% else %} 
+            <img class='profil' src="{{ asset('assets/imageProfil/default.png') }}" alt="">
+            {% endif %} 
+            <p>{{item.pseudo}}</p>
+            <p>{{item.date |date("m/d/Y")}}</p>
+        </div>
+        <p>{{item.description}}<a class='red' href="">Lire plus...</a></p>
+        </div>
+{% endfor %}
+<style>
+
+    a 
+    {
+        text-decoration: none;
+    }
+    .head 
+    {
+        background-image: linear-gradient(-30deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.7)),
+                  url("feu.jpg");
+        background-size: cover;
+        display:flex;
+        justify-content: space-around;
+        padding: 3%;
+        margin: 4%;
+        overflow: hidden;
+        border: 2px solid black;
+        border-radius: 20px;
+    }
+    h1
+    {
+        margin:0;
+        padding: 0;
+        text-align: left;
+        margin-left: 5%;
+    }
+    p, h2
+    {
+        margin-left: 5%;
+    }
+    .red
+    {
+        color:  #EE6659
+    }
+    .etoiles
+    {
+        margin-left: 5%;
+        padding-top: 10px;
+    }
+    .paroles
+    {
+        width: 20vw;
+        max-height: 20vh;
+        overflow: scroll;
+    }
+    .button
+    {   
+        padding-left: 5vw;
+        padding-right: 5vw;
+        width: 5vw;
+        margin: 5%;
+        margin-top: 5%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        background-color: black;
+        border-radius: 15px;
+        color: white;
+    }
+    #boutons 
+    {
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+    .big
+    {
+        font-size: 2em;
+    }
+    .section 
+    {
+        padding-top: 5%;
+        margin:auto;
+        width: 50vw;
+    }
+    .section_info 
+    {
+        margin-left: 5%;
+        display:flex;
+        align-items: center;
+        margin-bottom: 2%;
+    }
+    .profil 
+    {
+        width: 3vw;
+        height: 3vw;
+        border-radius: 50%;
+    }
+    @media screen and (max-width: 900px)
+    {
+        .paroles, .stats
+        {
+            display:none;
+        }
+        .button
+        {   
+            padding-left: 5vw;
+            padding-right: 5vw;
+            width: 10vw;
+            min-width: 80px;
+            margin: 5%;
+            margin-bottom: 20%;
+            padding-top: 5%;
+            padding-bottom: 5%;
+            background-color: black;
+            border-radius: 15px;
+            color: white;
+        }
+    }
+</style>
+{% endblock %}

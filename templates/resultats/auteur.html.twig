@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+{% block header_accueil %}{% endblock %}
+{% block stylesheets %}
+<link href="{{ asset('assets/css/index.css') }}" rel="stylesheet">
+{% endblock %}
+{% dump auteur %}
+{% dump musique %}
+{% block body %}
+<div class="main">
+    <div class="presentation_auteur">
+        <div id="bord_image"><div class="img" style="background-image: url('{{ asset('assets/illustrations/'~ auteur.Illustration) }}')"></div></div>
+        <h2>{{auteur.nom}}</h2>
+        <p>Date de création : 12/09/12</p>
+        <p>Nombre d'album : 4</p>
+    </div>
+
+    <div class="titres">
+        <h2>Titres populaires</h2>
+        <div class="section_musique">
+            {% for item in musique %} 
+                <p id="ligne_musique"><a href="{{path('app_musique', {id: item.id})  }}">{{item.nom}}</a></p>
+            {% endfor %}
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+    * 
+    {
+        color: white;
+    }
+    .presentation_auteur
+    {
+        margin-left: 5%;
+        display:flex;
+        flex-direction: column;
+    }
+    .titres
+    {
+        margin-right: 5%;
+    }
+    .main 
+    {
+        background-color: rgb(47, 48, 49);
+        margin:3%;
+        height: 75vh;
+        border-radius: 2vh;
+        display:flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row;
+    }
+    h1 
+    {
+        margin: 5%;
+    }
+    .img 
+    {
+        width: 15vw;
+        height: 15vw;
+        background-size: cover;
+        border-radius: 20px;
+    }
+    #bord_image
+    {
+        width: 17vw;
+        height: 17vw;
+        background-color:#EE6659;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #ligne_musique a:hover
+    {
+        color:#EE6659;
+    }
+    .section_musique 
+    {
+        max-height: 60vh;
+        min-height: 40vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,170 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+<link href="{{ asset('assets/css/nav.css') }}" rel="stylesheet">
+{% endblock %}
+{% block title %}Hello AjoutController!{% endblock %}
+
+{% block body %}
+
+
+<nav>
+    <div class="nav_i"><a href="{{path('app_accueil')  }}"><i class="fa-solid fa-arrow-left fa-xl"></i></a></div>
+    <div id="test"><img id="logo_img" src="{{ asset('assets/img/logo.svg') }}" /><a href="{{ path('app_accueil') }}" id="logo">SpeakMusic</a></div>
+</nav>
+
+<section>
+
+    {{ form_start(form) }}
+    <h1>Ajouter un auteur</h1>
+
+  
+
+        <p class="champ">
+            {{ form_label(form.nom) }} <br />
+            {{ form_widget(form.nom) }}
+        </p>
+
+        <p class="champ">
+            {{ form_label(form.dateFormation) }} <br />
+            {{ form_widget(form.dateFormation) }}
+        </p>
+
+        <p class="champ normal_input">
+            {{ form_label(form.Illustration) }} <br />
+            {{ form_widget(form.Illustration, {'attr': {'class': 'normal_input', 'style' : 'display:none;'}}) }}
+        </p>
+            
+        {{ form_row(form.submit) }}
+    {{ form_end(form) }}
+</section>
+
+<style>
+    .normal_input
+    {
+        margin: auto;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 15px;
+        width: 20vw;
+        height: 6vh;
+        border: 2px solid black;
+        margin-top: 2%;
+    }
+    .illustration 
+    {
+        display: none;
+    }
+    .paroles 
+    {
+        height: 9vw;
+        padding-top: 2%;
+    }
+    section
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    form {
+        width: 50vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    button
+    {
+        margin-top: 4%;
+        height: 5vh;
+        width: 10vw;
+        border: none;
+        background-color: black;
+        border-radius: 5px;
+        align-items: middle;
+        color: white;
+    }
+    input[type="text"], input[type="number"], textarea
+    {
+        margin-top: 10px;
+        margin-bottom: 2%;
+        border-radius: 15px;
+        width: 20vw;
+        height: 5vh;
+        border: 2px solid black;
+        padding-left: 10px;
+    }
+    nav 
+    {
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        color: grey;
+        margin-left: 4%;
+        margin-top: 3%;
+        margin-bottom : 5%;
+    }
+    i 
+    {
+        color:white;
+    }
+    .nav_i 
+    {
+        width:40px;
+        height: 40px;
+        background-color:rgb(65, 65, 65);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+    }
+    #logo_img 
+    {
+        width: 10%;
+        margin-right: 10px;
+    }
+    #logo 
+    {
+        font-size: 1.2em;
+        color: black;
+        font-weight: bold;
+    }
+    .red
+    {
+        color:  #EE6659
+    }
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus 
+    {
+    outline: none;
+    }
+    a 
+    {
+        text-decoration: none;
+        color : grey;
+    }
+    * 
+    {
+        text-align: center;
+    }
+    h1
+    {
+        margin-bottom: 5%;
+    }
+    input[type="radio"] {
+        color: black;
+        background-color: black;
+        accent-color: black;
+        margin-bottom: 2%;
+        margin-top: 10px;
+        transform: scale(1.4); 
+        margin-right: 2%;
+
+      }
+#ajout_auteur_type_1 
+{
+    margin-left: 20%;
+}
+</style>
+{% endblock %}

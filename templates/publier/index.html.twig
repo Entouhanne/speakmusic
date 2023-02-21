@@ -1,0 +1,193 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PublierController!{% endblock %}
+
+{% block body %}
+
+
+    <div class="one">
+        <div class="nav_i"><a href="{{path('app_accueil')  }}"><i class="fa-solid fa-arrow-left fa-xl"></i></a></div>
+        <p id="p_musique">Musique :</p>
+        <p id="p_titre">{{musique.nom}}</p>
+        {% dump auteur %}
+        <p>Par {{auteur.nom}}</p>
+    </div>
+    <div class="two">
+        <h1>Ajouter un contenu</h1>
+        {{ form_start(form) }}
+        <p>
+
+            {{ form_widget(form.titre, { 'attr': {'placeholder': 'Votre Titre...', 'class' : 'titre'} }) }}
+            <br />
+            </p>
+            <p>
+            {{ form_widget(form.description, { 'attr': {'placeholder': 'Ecrivez tout ce que vous voulez ici !', 'class' : 'description'} }) }}
+        </p>
+        {{ form_widget(form.submit, { 'attr': {'class': 'send', 'type' : 'submit', 'value' : "s'inscrire"} }) }}
+        {{ form(form) }}
+    </div>
+
+<style>
+    a 
+    {
+        text-decoration: none;
+        color: grey
+    }
+    body 
+    {
+        margin:0;
+        padding:0;
+        display:flex;
+        justify-content: space-around;
+        font-family: sans-serif;
+    }
+    .one 
+    {
+        width: 35vw;
+        background-color: #EE6659;
+        height: 100vh;
+        display:flex;
+        flex-direction : column;
+        justify-content: flex-start;
+        text-align: left;
+        padding-left: 5%;
+    }
+    .two 
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 65vw;
+        height: 100vh;
+        color: black;
+        padding-left: 5%;
+    }
+    .radio {
+        padding: 4px;
+        border-radius: 3px;
+        position: relative;
+        width: 30vw;
+    }
+
+    .radio input {
+        width: auto;
+        height: 100%;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        outline: none;
+        cursor: pointer;
+        border-radius: 2px;
+        padding: 4px 8px;
+        background: #454857;
+        color: #bdbdbdbd;
+        font-size: 14px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+            "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        transition: all 100ms linear;
+        padding: 2%;
+        border-radius: 5px;
+    }
+
+    .radio input:checked {
+        background: #EE6659;
+        color: #fff;
+        box-shadow: 0 1px 1px #0000002e;
+        text-shadow: 0 1px 0px #79485f7a;
+    }
+
+    .radio input:before {
+        content: attr(label);
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+    .titre 
+    {
+        margin-left: 1%;
+        border-radius: 10px;
+        border: 1px solid black;
+        padding: 1.5%;
+        width: 40vw;
+        outline: none;
+    }
+    .description 
+    {
+        margin-left: 1%;
+        border-radius: 10px;
+        border: 1px solid black;
+        padding: 1.5%;
+        width: 40vw;
+        outline: none;
+        height: 20vh;
+    }
+    textarea 
+    {
+        font-family: sans-serif;
+    }
+    .logo 
+    {
+        display:flex;
+        margin-top: 3%;
+        align-items: flex-end;
+        height: 8vh;
+    }
+    .logo  p 
+    {
+        font-size: 2em;
+        font-weight: bold;
+        margin-left: 10px;
+        margin-bottom: 0;
+    }
+    #logo_img
+    {
+        width: 50px;
+        height: 50px;
+        margin:0;
+    }
+    h1 
+    {
+        font-size: 2em;
+        margin-top: 3vh;
+        height: 8vh;
+    }
+    .send
+    {
+        border-radius:15px;
+        background-color: black;
+        color:white;
+        border: none;
+        text-align: center;
+        height: 7vh;
+        width: 30vw;
+        margin-top: 3%;
+    }
+    #p_musique 
+    {
+        margin-top: 20vh;
+    }
+    #p_titre 
+    {
+        font-weight: bold;
+        font-size: 1.5em;
+    }
+    i
+    {
+        color:white;
+    }
+    .nav_i 
+    {
+        width: 40px;
+        height: 40px;
+        background-color:rgb(31, 31, 31);
+        border-radius: 50%;
+        margin-top: 3vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+</style>
+
+{% endblock %}

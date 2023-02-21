@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+{% block title %}Modifier ma photo de profil {% endblock %}
+{% block body %}
+<nav>
+    <div class="nav_i"><a href="{{path('app_compte')  }}"><i class="fa-solid fa-arrow-left fa-l"></i></a></div>
+    <div id="test"><a href="{{ path('app_accueil') }}" id="logo">SpeakMusic</a></div>
+</nav>
+
+
+<section>
+    <h1>Modifier votre photo de profil</h1>
+    {{ form_start(form) }}
+    <p class="normal_input">{{ form_label(form.Illustration, 'Choisir une image', {'label_attr': {'class': ''}}) }}    </p>
+        <p>{{ form_widget(form.Illustration, {'attr': {'class': 'normal_input', 'style' : 'display:none;'}}) }}</p>
+        <p>{{ form_widget(form.submit, {'attr': {'class': 'send'}}) }}</p>
+    {{ form_end(form) }}
+</section>
+
+
+
+<style>
+    body
+    {
+        margin:0;
+        padding:0;
+        font-family: sans-serif;
+        text-align:left;
+    }
+    nav 
+    {
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        color: grey;
+        margin-left: 4%;
+        margin-right: 4%;
+        margin-top: 3%;
+    }
+    i 
+    {
+        color:white;
+    }
+    .nav_i 
+    {
+        width:35px;
+        height: 35px;
+        background-color:rgb(65, 65, 65);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+    }
+    #logo_img 
+    {
+        width: 10%;
+        margin-right: 10px;
+    }
+    #logo 
+    {
+        font-size: 1.2em;
+        color: black;
+        font-weight: bold;
+    }
+    .red
+    {
+        color:  #EE6659;
+    }
+    .send
+    {
+        border-radius:15px;
+        background-color: black;
+        color:white;
+        border: none;
+        text-align: center;
+        height: 7vh;
+        width: 10vw;
+        margin-top: 3%;
+    }
+    .normal_input
+    {
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 15px;
+        width: 16vw;
+        height: 6vh;
+        border: 2px solid black;
+        margin-top: 2%;
+    }
+        input:focus,
+        select:focus,
+        textarea:focus,
+        button:focus 
+        {
+        outline: none;
+        }
+    a 
+    {
+        text-decoration: none;
+        color : grey;
+    }
+      section {
+        margin-left: 30%;
+        margin-top: 8%;
+      }
+
+
+</style>
+{% endblock %}

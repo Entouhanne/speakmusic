@@ -1,0 +1,157 @@
+
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+<link href="{{ asset('assets/css/nav.css') }}" rel="stylesheet">
+{% endblock %}
+{% block title %}Choisir l'auteur{% endblock %}
+{% block body %}
+
+{% dump test %}
+<nav>
+    <div class="nav_i"><a href="{{path('app_accueil')  }}"><i class="fa-solid fa-arrow-left fa-xl"></i></a></div>
+    <div id="test"><img id="logo_img" src="{{ asset('assets/img/logo.svg') }}" /><a href="{{ path('app_accueil') }}" id="logo">SpeakMusic</a></div>
+</nav>
+
+<header>
+    <h2>Commencez par choisir le genre de l'auteur que vous voulez ajouter :</h2>
+
+
+    <div id="changer_pseudo">
+        {{ form_start(form) }}
+        {{ form_widget(form.nom,  { 'placeholder': "test", 'id' : 'search', 'name' : 'search' }) }}
+        <button type="submit" value="Submit" id="submitButton">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        {{ form_end(form) }}
+    </div>
+
+    <p>Votre recherche : {{slug}} </p>
+</header>
+
+{% for item in test %}
+<section>
+    {% dump item %}
+
+    
+
+
+
+    <p><a href="{{ path('app_ajout_auteur', {pays : item.id, genre: genre}) }}">{{item.nom}}</a></p>
+    <div class="go">
+        <i class="fa-solid fa-arrow-right fa-l "></i>
+    </div>
+</section>
+{% endfor %}
+
+<style>
+    nav 
+    {
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        color: grey;
+        margin-left: 4%;
+        margin-top: 3%;
+        margin-bottom : 5%;
+    }
+    i 
+    {
+        color:white;
+        transition: transform 600ms;
+    }
+    i:hover
+    {
+        transform: rotate(360deg);
+    }
+    .nav_i 
+    {
+        width:40px;
+        height: 40px;
+        background-color:rgb(65, 65, 65);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+    }
+    #logo_img 
+    {
+        width: 10%;
+        margin-right: 10px;
+    }
+    #logo 
+    {
+        font-size: 1.2em;
+        color: black;
+        font-weight: bold;
+    }
+    .red
+    {
+        color:  #EE6659
+    }
+
+    button
+    {
+        height: 41px;
+        width: 5vw;
+        border: none;
+        background-color: black;
+        border-radius: 7px;
+        align-items: middle;
+        color: white;
+    }
+    #submit_i, .go i
+    {
+        color: white;
+    }
+    header
+    {
+        margin-bottom: 5%;
+        text-align: center;
+    }
+    section p, section a 
+    {
+        color: white;
+    }
+    section
+    {
+        margin: auto;
+        background-color: rgb(46, 46, 46);
+        width: 30vw;
+        padding-left: 5vw;
+        padding-right: 5vw;
+        height: 5vw;
+        margin-bottom: 2%;
+        border-radius: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: transform 300ms, background-color 400ms;
+    }
+    section:hover {
+        transform: scale(1.05);
+        background-color:#EE6659;
+    }
+
+    #changer_pseudo form
+    {
+        margin: auto;
+        margin-top: 5%;
+        width: 27vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        border: 3px solid black;
+        border-radius: 10px;
+        margin-bottom: 2%;
+    }
+    input
+    {
+        width: 20vw;
+        height: 30px;
+        border: none;
+        padding-left: 10px;
+    }
+
+</style>
+{% endblock %}
